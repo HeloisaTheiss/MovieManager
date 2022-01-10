@@ -1,25 +1,32 @@
 package br.com.movie.entities;
 
-import org.apache.tomcat.jni.Time;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Time;
 import java.time.LocalDate;
 
+import static javax.persistence.CascadeType.REFRESH;
+
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Poster {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne(cascade = REFRESH)
     private Movie movie;
 
     private LocalDate date;
 
     private Time hour;
 
+    @ManyToOne(cascade = REFRESH)
     private Room room;
 }

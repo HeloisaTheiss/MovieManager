@@ -1,11 +1,17 @@
 package br.com.movie.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+import static javax.persistence.CascadeType.REFRESH;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Armchair {
 
     @Id
@@ -18,5 +24,7 @@ public class Armchair {
 
     private Boolean vip;
 
+    @ManyToOne(cascade = REFRESH)
     private Room room;
+
 }
